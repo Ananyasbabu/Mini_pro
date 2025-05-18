@@ -1,0 +1,81 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #f7f8f8, #acbb78);
+    padding: 30px;
+  }
+  
+  .container {
+    background: white;
+    max-width: 500px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+  
+  input[type="number"],
+  input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background-color: #56ab2f;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3d8b1e;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    padding: 8px;
+    background: #e3f2d3;
+    margin: 5px auto;
+    width: 90%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  ul li button {
+    background: red;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .back-button-top {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button-top:hover {
+    background-color: #388e3c;
+  }
+  

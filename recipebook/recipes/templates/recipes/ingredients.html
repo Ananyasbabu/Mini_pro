@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingredient Book</title>
+  <link rel="stylesheet" href="{% static 'recipes/shared.css' %}">
+</head>
+<body>
+  <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+  <div class="container">
+    <h2>Ingredient Book</h2>
+    
+    <nav class="navigation">
+      <a href="{% url 'home' %}" class="back-button">⬅ Home</a>
+      <a href="{% url 'bmi' %}" class="back-button">⬅ Back to BMI Calculator</a>
+    </nav>
+
+    <!-- Ingredient Form -->
+    <form id="ingredientForm" method="POST">
+      {% csrf_token %}
+      <input type="text" id="ingredientInput" placeholder="Enter an ingredient" required>
+      <button type="button" id="addIngredientBtn">Add Ingredient</button>
+  </form>
+  
+    <!-- Ingredient List -->
+    <ul id="ingredientList"></ul>
+
+    <!-- Food Suggestions -->
+   
+    <div id="finalSuggestions"></div>
+  </div>
+
+  <script src="{% static 'recipes/script1.js' %}"></script>
+</body>
+</html>

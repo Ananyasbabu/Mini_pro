@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile | NutriNote</title>
+  <link rel="stylesheet" href="{% static 'recipes/profile.css' %}">
+</head>
+<body>
+  <div class="profile-container">
+    <h2>Edit Profile</h2>
+
+    <!-- Profile Edit Form -->
+    <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <label for="profile_picture">Upload Profile Picture:</label>
+      <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+
+      <button type="submit">Save Changes</button>
+    </form>
+
+    <!-- Navigation -->
+    <a href="{% url 'profile' %}" class="btn">Back to Profile</a>
+  </div>
+</body>
+</html>

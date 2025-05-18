@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile | NutriNote</title>
+  <link rel="stylesheet" href="{% static 'recipes/profile.css' %}">
+</head>
+<body>
+  <div class="profile-container">
+    <div class="card">
+      <!-- Profile Picture -->
+      <div class="profile-pic">
+        {% if user.profile_picture %}
+          <img src="{{ user.profile_picture.url }}" alt="Profile Picture">
+        {% else %}
+          <img src="{% static 'images/default-profile.png' %}" alt="Default Profile Picture">
+        {% endif %}
+      </div>
+
+      <!-- User Details -->
+      <h2>{{ user.username }}</h2>
+      <p>Email: {{ user.email }}</p>
+      <p>Joined on: {{ user.date_joined|date:"M d, Y" }}</p>
+
+      <!-- Profile Buttons -->
+      <div class="buttons">
+        <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
+        <a href="{% url 'logout' %}" class="btn logout">Logout</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

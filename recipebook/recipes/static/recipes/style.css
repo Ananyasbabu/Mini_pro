@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #258529;
+    padding: 15px 30px;
+    color: white;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  
+  .menu li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Hero section */
+  .hero {
+    background: url('https://thumbs.dreamstime.com/z/balanced-diet-food-dark-background-healthy-eating-concept-empty-wooden-board-frame-various-organic-products-top-view-183891339.jpg?ct=jpeg') no-repeat center center/cover;
+    height: 90vh;
+    position: relative;
+    color: white;
+  }
+  
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .overlay h2 {
+    font-size: 3rem;
+  }
+  
+  .overlay p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  /* Videos */
+  .slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .video-wrapper-container {
+    width: 80%;
+    overflow: hidden;
+  }
+  
+  .video-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .video-card {
+    flex: 0 0 33.33%;
+    padding: 10px;
+  }
+  
+  .slide-btn {
+    background-color: #45b649;
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  
+  /* About */
+  .about {
+    padding: 40px;
+    background: #fff;
+    text-align: center;
+  }
+  
+  .about p {
+    margin-top: 10px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+  }
+  
+  /* Footer */
+  footer {
+    background: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+  
