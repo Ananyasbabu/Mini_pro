@@ -50,6 +50,7 @@ urlpatterns = [
     path("api/v1/ingredients/", get_ingredients, name="get_ingredients"),
     path("api/v1/ingredients/add/", add_ingredient, name="add_ingredient"),
     path("api/v1/ingredients/delete/", delete_ingredient, name="delete_ingredient"),
+    path("api/v1/leaderboard/submit-bmi/", submit_bmi, name="submit_bmi"),
 
 
     

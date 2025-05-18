@@ -110,7 +110,7 @@ class UserWeight(models.Model):
         ],
         help_text=_("Calculated Body Mass Index (BMI).")
     )
-    notes = models.TextField(blank=True, null=True, help_text=_("Optional notes on user progress."))
+    #notes = models.TextField(blank=True, null=True, help_text=_("Optional notes on user progress."))
 
     class Meta:
         ordering = ["-date"]

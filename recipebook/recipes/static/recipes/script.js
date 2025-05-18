@@ -1,5 +1,5 @@
 function submitBMI(height, weight,bmi) {
-    fetch("/submit-bmi/", {
+    fetch("/api/v1/leaderboard/submit-bmi/", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",

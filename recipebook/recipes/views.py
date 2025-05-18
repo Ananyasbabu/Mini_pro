@@ -71,6 +71,7 @@ def user_register(request):
 
 def user_login(request):
     """Handles user authentication"""
+
     if request.method == "POST":
         email = request.POST.get("email", "").lower()
         password = request.POST.get("password", "")
@@ -165,61 +166,45 @@ def bmi_calculator(request):
 @csrf_exempt
 @login_required
 def submit_bmi(request):
+    """Handles BMI calculation and storage"""
     if request.method == "POST":
         try:
             height = float(request.POST.get("height", 0))
             weight = float(request.POST.get("weight", 0))
-
+            
             if height <= 0 or weight <= 0:
                 raise ValidationError("Height and weight must be positive values")
-
-            height_in_m = height / 100
+            
+            height_in_m = height / 100  # Convert cm to m
             bmi = round(weight / (height_in_m ** 2), 2)
             category = get_bmi_category(bmi)
-
-            UserWeight.objects.create(user=request.user, weight=weight, bmi=bmi)
-
+            
+            UserWeight.objects.create(
+                user= request.user,
+                weight=weight,
+                bmi=bmi
+            )
+            
             return JsonResponse({
                 "message": "BMI recorded successfully",
                 "bmi": bmi,
                 "category": category
             })
-
+            
         except (ValueError, ValidationError) as e:
             return JsonResponse({"error": str(e)}, status=400)
         except Exception as e:
             logger.error(f"BMI submission error: {str(e)}")
             return JsonResponse({"error": "An error occurred"}, status=500)
-
+    
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
 
-# @csrf_exempt
-# @login_required
-# def get_weight_data(request):
-#     """Provides weight data for charts"""
-#     try:
-#         weight_entries = UserWeight.objects.filter(user=request.user).order_by("-date")[:10]  # Last 10 entries
-
-#         if not weight_entries.exists():
-#             return JsonResponse({"labels": [], "weights": [], "bmis": [], "message": "No recent data found"}, status=200)
-
-#         data = {
-#             "labels": [entry.date.strftime("%Y-%m-%d") for entry in weight_entries],
-#             "weights": [float(entry.weight) for entry in weight_entries],
-#             "bmis": [float(entry.bmi) for entry in weight_entries]
-#         }
-        
-#         return JsonResponse(data, status=200)
-    
-#     except Exception as e:
-#         logger.error(f"❌ Weight data fetch error: {str(e)}")
-#         return JsonResponse({"error": "Failed to fetch weight data", "details": str(e)}, status=500)
-
 @login_required
 def get_weight_data(request):
+    """Provides weight data for charts"""
     try:
-        weight_entries = UserWeight.objects.filter(user=request.user).order_by("-date")[:10]
+        weight_entries = UserWeight.objects.filter(user=request.user).order_by("-date")[:10]  # Last 10 entries
 
         if not weight_entries.exists():
             return JsonResponse({"labels": [], "weights": [], "bmis": [], "message": "No recent data found"}, status=200)
@@ -227,16 +212,22 @@ def get_weight_data(request):
         data = {
             "labels": [entry.date.strftime("%Y-%m-%d") for entry in weight_entries],
             "weights": [float(entry.weight) for entry in weight_entries],
-            "bmis": [float(entry.bmi) for entry in weight_entries],
+            "bmis": [float(entry.bmi) for entry in weight_entries]
         }
-
+        
         return JsonResponse(data, status=200)
-
+    
     except Exception as e:
-        import traceback
-        print("❌ Error fetching weight data:", traceback.format_exc())
+        logger.error(f"❌ Weight data fetch error: {str(e)}")
         return JsonResponse({"error": "Failed to fetch weight data", "details": str(e)}, status=500)
 
+
+
+# Ingredient Views
+@login_required
+def ingredient_book(request):
+    """Displays ingredient management interface"""
+    return render(request, "recipes/ingredients.html")
 
 
 @csrf_exempt
@@ -328,6 +319,3 @@ def leaderboard(request):
 def home(request):
     """Displays the home page"""
     return render(request, "recipes/index.html")
-
-def ingredient_book(request):
-    return render(request, 'ingredient_book.html')
